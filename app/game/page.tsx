@@ -1,8 +1,13 @@
 "use client";
 
-import Game from "@/components/Game/game";
+// import Game from "@/components/Game/game";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useEffect, Suspense } from "react";
+import dynamic from "next/dynamic";
+
+const Game = dynamic(() => import("@/components/Game/game"), {
+    suspense: true,
+});
 
 const GamePage = () => {
     const router = useRouter();
