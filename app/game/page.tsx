@@ -2,7 +2,7 @@
 
 import Game from "@/components/Game/game";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 
 const GamePage = () => {
     const router = useRouter();
@@ -26,10 +26,12 @@ const GamePage = () => {
     }
 
     return (
-        <div className="flex flex-col items-center justify-center h-screen">
-            <h1 className="text-3xl font-bold">Game</h1>
-            <Game player1={players.player1} player2={players.player2} />
-        </div>
+        <Suspense fallback={<div>Loading...</div>}>
+            <div className="flex flex-col items-center justify-center h-screen">
+                <h1 className="text-3xl font-bold">Game</h1>
+                <Game player1={players.player1} player2={players.player2} />
+            </div>
+        </Suspense>
     );
 };
 
