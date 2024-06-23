@@ -1,26 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-interface Dot {
-    x: number;
-    y: number;
-}
-
-interface Connection {
-    dot1: Dot;
-    dot2: Dot;
-}
-
-interface Square {
-    x: number;
-    y: number;
-    player: string;
-}
-
-interface GridState {
-    selectedDot: Dot | null;
-    connections: Connection[];
-    squares: Square[];
-}
+import { GridState, Connection, Square } from '@/lib/types/grid';
+import { Coordinate } from '@/lib/types/common';
 
 const initialState: GridState = {
     selectedDot: null,
@@ -32,7 +12,7 @@ const gridSlice = createSlice({
     name: 'grid',
     initialState,
     reducers: {
-        selectDot: (state, action: PayloadAction<Dot>) => {
+        selectDot: (state, action: PayloadAction<Coordinate>) => {
             state.selectedDot = action.payload;
         },
         addConnection: (state, action: PayloadAction<Connection>) => {

@@ -1,10 +1,10 @@
-type Player = {
+interface PlayerProps {
     name: string;
     score: number;
     isCurrentPlayer: boolean;
-};
+}
 
-const Player = ({ name, score, isCurrentPlayer }: Player) => {
+const Player = ({ name, score, isCurrentPlayer }: PlayerProps) => {
     return (
         <div
             style={{

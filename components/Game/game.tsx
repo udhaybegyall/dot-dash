@@ -2,17 +2,18 @@ import Grid from './grid';
 import Player from './player';
 import useGameTurn from '@/hooks/useGameTurn';
 import useGameScore from '@/hooks/useGameScore';
+import { PlayerID } from '@/lib/types/player';
 
-type Game = {
+type GameProps = {
     player1: string;
     player2: string;
 };
 
-const Game = ({ player1, player2 }: Game) => {
+const Game = ({ player1, player2 }: GameProps) => {
     const { currentPlayer, switchTurn, isCurrentPlayer } = useGameTurn();
     const { scores, incrementScore } = useGameScore();
 
-    const handleSquareCompletion = (player: 'player1' | 'player2') => {
+    const handleSquareCompletion = (player: PlayerID) => {
         incrementScore(player);
     };
 

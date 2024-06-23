@@ -1,10 +1,9 @@
 'use client';
 
-interface DotProps {
-    x: number;
-    y: number;
+import { Dot as DotType } from '@/lib/types/grid';
+
+interface DotProps extends DotType {
     dotSize: number;
-    isSelected: boolean;
     onClick: (x: number, y: number) => void;
 }
 

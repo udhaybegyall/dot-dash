@@ -1,7 +1,4 @@
-type Dot = {
-    x: number;
-    y: number;
-};
+import { Coordinate } from './types/common';
 
 class Graph {
     private rows: number;
@@ -28,7 +25,7 @@ class Graph {
         return `${x}-${y}`;
     }
 
-    addEdge(dot1: Dot, dot2: Dot) {
+    addEdge(dot1: Coordinate, dot2: Coordinate) {
         const key1 = this.getKey(dot1.x, dot1.y);
         const key2 = this.getKey(dot2.x, dot2.y);
         if (this.adjacencyList.has(key1) && this.adjacencyList.has(key2)) {
@@ -37,22 +34,20 @@ class Graph {
         }
     }
 
-    areNeighbors(dot1: Dot, dot2: Dot): boolean {
-        // const key1 = this.getKey(dot1.x, dot1.y);
-        // const key2 = this.getKey(dot2.x, dot2.y);
+    areNeighbors(dot1: Coordinate, dot2: Coordinate): boolean {
         return (
             (Math.abs(dot1.x - dot2.x) === 1 && dot1.y === dot2.y) ||
             (Math.abs(dot1.y - dot2.y) === 1 && dot1.x === dot2.x)
         );
     }
 
-    hasEdge(dot1: Dot, dot2: Dot): boolean {
+    hasEdge(dot1: Coordinate, dot2: Coordinate): boolean {
         const key1 = this.getKey(dot1.x, dot1.y);
         const key2 = this.getKey(dot2.x, dot2.y);
         return this.adjacencyList.get(key1)?.has(key2) || false;
     }
 
-    checkForSquares(dot: Dot): { x: number; y: number }[] {
+    checkForSquares(dot: Coordinate): { x: number; y: number }[] {
         // const squares: { x: number; y: number; }[] = [];
         const { x, y } = dot;
 

@@ -1,8 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/lib/store';
 import { switchTurn } from '@/lib/store/slices/gameSlice';
-
-type Player = 'player1' | 'player2';
+import { PlayerID } from '@/lib/types/player';
 
 function useGameTurn() {
     const dispatch = useDispatch();
@@ -14,7 +13,7 @@ function useGameTurn() {
         dispatch(switchTurn());
     }
 
-    function isCurrentPlayer(player: Player) {
+    function isCurrentPlayer(player: PlayerID) {
         return currentPlayer === player;
     }
 

@@ -1,9 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-interface GameState {
-    currentPlayer: 'player1' | 'player2';
-    scores: { player1: number; player2: number };
-}
+import { GameState } from '@/lib/types/game';
 
 const initialState: GameState = {
     currentPlayer: 'player1',

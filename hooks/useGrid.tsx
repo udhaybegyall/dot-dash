@@ -5,11 +5,8 @@ import {
     addConnection,
     addSquare,
 } from '@/lib/store/slices/gridSlice';
-
-interface Dot {
-    x: number;
-    y: number;
-}
+import { Connection, Square } from '@/lib/types/grid';
+import { Coordinate } from '@/lib/types/common';
 
 function useGrid() {
     const dispatch = useDispatch();
@@ -17,18 +14,15 @@ function useGrid() {
         (state: RootState) => state.grid
     );
 
-    function selectDotAction(dot: Dot) {
+    function selectDotAction(dot: Coordinate) {
         dispatch(selectDot(dot));
     }
 
-    function addConnectionAction(connection: {
-        dot1: { x: number; y: number };
-        dot2: { x: number; y: number };
-    }) {
+    function addConnectionAction(connection: Connection) {
         dispatch(addConnection(connection));
     }
 
-    function addSquareAction(square: { x: number; y: number; player: string }) {
+    function addSquareAction(square: Square) {
         dispatch(addSquare(square));
     }
 

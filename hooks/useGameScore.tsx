@@ -1,14 +1,13 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '@/lib/store';
 import { incrementScore, resetScores } from '@/lib/store/slices/gameSlice';
-
-type Player = 'player1' | 'player2';
+import { PlayerID } from '@/lib/types/player';
 
 function useGameScore() {
     const dispatch = useDispatch();
     const scores = useSelector((state: RootState) => state.game.scores);
 
-    function incrementScoreAction(player: Player) {
+    function incrementScoreAction(player: PlayerID) {
         dispatch(incrementScore(player));
     }
 
