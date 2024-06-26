@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
-import useGrid from '@/hooks/useGrid';
+import React, { useEffect, useRef } from 'react';
 
 import Dot from './Dot';
 import Graph from '@/lib/graph';
 import { getFirstLetter } from '@/lib/utils';
+import { Coordinate } from '@/lib/types/common';
+import { Connection, Square } from '@/lib/types/grid';
 
 type Player = 'player1' | 'player2';
 
@@ -16,7 +17,13 @@ type GridProps = {
     player1: string;
     player2: string;
 
+    selectedDot: Coordinate | null;
+    connections: Connection[];
+    squares: Square[];
     currentPlayer: Player;
+    onDotSelect: (dot: Coordinate | null) => void;
+    onConnectionAdd: (connection: Connection) => void;
+    onSquareAdd: (square: Square) => void;
     onSquareCompletion: (player: Player) => void;
     onTurnEnd: (squareCompleted: boolean) => void;
 };
@@ -96,19 +103,17 @@ const Grid: React.FC<GridProps> = ({
     spacing,
     player1,
     player2,
+    selectedDot,
+    connections,
+    squares,
     currentPlayer,
+    onDotSelect,
+    onConnectionAdd,
+    onSquareAdd,
     onSquareCompletion,
     onTurnEnd,
 }) => {
     const graph = useRef(new Graph(rows, cols));
-    const {
-        selectedDot,
-        selectDot,
-        connections,
-        addConnection,
-        addSquare,
-        squares,
-    } = useGrid();
 
     useEffect(() => {
         console.log('graph', graph);
@@ -122,7 +127,7 @@ const Grid: React.FC<GridProps> = ({
                 if (!graph.current.hasEdge(selectedDot, newDot)) {
                     // If the new dot is a neighbor and there is no edge between them, connect them
                     graph.current.addEdge(selectedDot, newDot);
-                    addConnection({ dot1: selectedDot, dot2: newDot });
+                    onConnectionAdd({ dot1: selectedDot, dot2: newDot });
 
                     console.log('New edge added', selectedDot, newDot);
 
@@ -140,21 +145,24 @@ const Grid: React.FC<GridProps> = ({
                                 currentPlayer === 'player1'
                                     ? getFirstLetter(player1)
                                     : getFirstLetter(player2);
-                            addSquare({ ...square, player });
+                            onSquareAdd({ ...square, player });
                             onSquareCompletion(currentPlayer);
                             squareCompleted = true;
                         }
                     });
 
+                    // Reset the selected dot
+                    // onDotSelect(null);
+
                     onTurnEnd(squareCompleted);
                 }
             } else {
                 // If the new dot is not a neighbor, update the selection
-                selectDot(newDot);
+                onDotSelect(newDot);
             }
         } else {
             // If no dot is currently selected, select the new dot
-            selectDot(newDot);
+            onDotSelect(newDot);
         }
     };
 

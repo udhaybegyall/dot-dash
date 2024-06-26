@@ -1,52 +1,99 @@
+import { use, useEffect, useState } from 'react';
 import Grid from './grid';
 import Player from './player';
-import useGameTurn from '@/hooks/useGameTurn';
-import useGameScore from '@/hooks/useGameScore';
+import GameOverDialog from '@/app/(components)/GameOverDialog';
+import { useGame } from '@/hooks/useGame';
 import { PlayerID } from '@/lib/types/player';
+import { useRouter } from 'next/navigation';
 
-type GameProps = {
-    player1: string;
-    player2: string;
-};
+const Game = () => {
+    const game = useGame();
+    const [isGameOver, setIsGameOver] = useState(false);
+    const [winner, setWinner] = useState<string>('');
+    const router = useRouter();
 
-const Game = ({ player1, player2 }: GameProps) => {
-    const { currentPlayer, switchTurn, isCurrentPlayer } = useGameTurn();
-    const { scores, incrementScore } = useGameScore();
+    useEffect(() => {
+        const totalSquares = (game.grid.rows - 1) * (game.grid.cols - 1);
+        const totalScore =
+            game.players.player1.score + game.players.player2.score;
+
+        if (totalScore === totalSquares) {
+            setIsGameOver(true);
+            setWinner(
+                game.players.player1.score > game.players.player2.score
+                    ? game.players.player1.name
+                    : game.players.player2.name
+            );
+        }
+    }, [
+        game.players.player1.score,
+        game.players.player2.score,
+        game.grid.rows,
+        game.grid.cols,
+        game.players.player1.name,
+        game.players.player2.name,
+    ]);
+
+    const player_one_score = game.players?.player1?.score ?? 0;
+    const player_two_score = game.players?.player2?.score ?? 0;
 
     const handleSquareCompletion = (player: PlayerID) => {
-        incrementScore(player);
+        game.incrementScore(player);
     };
 
     const handleTurnEnd = (squareCompleted: boolean) => {
         if (!squareCompleted) {
-            switchTurn();
+            game.switchTurn();
         }
+    };
+
+    const handleGameRestart = () => {
+        game.resetGame();
+        setIsGameOver(false);
+    };
+
+    const handleGameEnd = () => {
+        game.fullReset();
+        router.push('/');
     };
 
     return (
         <div>
             <div style={{ display: 'flex', justifyContent: 'space-around' }}>
                 <Player
-                    name={player1}
-                    score={scores.player1}
-                    isCurrentPlayer={isCurrentPlayer('player1')}
+                    name={game.players.player1.name}
+                    score={player_one_score}
+                    isCurrentPlayer={game.isCurrentPlayer('player1')}
                 />
                 <Player
-                    name={player2}
-                    score={scores.player2}
-                    isCurrentPlayer={isCurrentPlayer('player2')}
+                    name={game.players.player2.name}
+                    score={player_two_score}
+                    isCurrentPlayer={game.isCurrentPlayer('player2')}
                 />
             </div>
             <Grid
-                rows={5}
-                cols={5}
+                rows={game.grid.rows}
+                cols={game.grid.cols}
                 dotSize={13}
                 spacing={40}
-                player1={player1}
-                player2={player2}
-                currentPlayer={currentPlayer}
+                player1={game.players.player1.name}
+                player2={game.players.player2.name}
+                selectedDot={game.grid.selectedDot}
+                connections={game.grid.connections}
+                squares={game.grid.squares}
+                currentPlayer={game.currentPlayer}
+                // @ts-ignores
+                onDotSelect={game.selectDot}
+                onConnectionAdd={game.addConnection}
+                onSquareAdd={game.addSquare}
                 onSquareCompletion={handleSquareCompletion}
                 onTurnEnd={handleTurnEnd}
+            />
+            <GameOverDialog
+                isOpen={isGameOver}
+                winner={winner}
+                onClose={handleGameEnd}
+                onRestart={handleGameRestart}
             />
         </div>
     );

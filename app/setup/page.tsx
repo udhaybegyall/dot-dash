@@ -5,6 +5,9 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 
+import { useDispatch } from 'react-redux';
+import { setPlayers, setGridSize } from '@/lib/store/slices/gameSlice';
+
 import {
     Card,
     CardContent,
@@ -26,6 +29,7 @@ const SetupPage = () => {
     const [activeTab, setActiveTab] = useState<string>('Names');
 
     const router = useRouter();
+    const dispatch = useDispatch();
 
     const handleNext = () => {
         if (player1 && player2) {
@@ -39,9 +43,9 @@ const SetupPage = () => {
 
     const handleStartGame = () => {
         if (rows > 0 && cols > 0) {
-            router.push(
-                `/game?player1=${encodeURIComponent(player1)}&player2=${encodeURIComponent(player2)}&rows=${rows}&cols=${cols}`
-            );
+            dispatch(setPlayers({ player1, player2 }));
+            dispatch(setGridSize({ rows, cols }));
+            router.push('/game');
         } else {
             setError('Please enter valid grid dimensions');
             setTimeout(() => setError(''), 3000);
