@@ -1,12 +1,8 @@
 'use client';
 
-import Game from '@/components/Game/game';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import Game from '@/components/game/game';
 
 const GamePage = () => {
-    const router = useRouter();
-
     // const [players, setPlayers] = useState({ player1: '', player2: '' });
 
     // useEffect(() => {

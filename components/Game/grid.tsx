@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-import Dot from './Dot';
+import Dot from '@/components/Game/Dot';
 import Graph from '@/lib/graph';
 import { getFirstLetter } from '@/lib/utils';
 import { Coordinate } from '@/lib/types/common';

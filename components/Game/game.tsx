@@ -1,7 +1,7 @@
 import { use, useEffect, useState } from 'react';
 import Grid from './grid';
 import Player from './player';
-import GameOverDialog from '@/app/(components)/GameOverDialog';
+import GameOverDialog from '@/components/game-over-dialog';
 import { useGame } from '@/hooks/useGame';
 import { PlayerID } from '@/lib/types/player';
 import { useRouter } from 'next/navigation';

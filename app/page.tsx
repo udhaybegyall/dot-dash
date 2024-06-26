@@ -1,7 +1,7 @@
 'use client';
 
 import { Suspense } from 'react';
-import PlayerSelection from './(components)/PlayerSelection';
+import PlayerSelection from '../components/game/player-selection';
 
 export default function Home() {
     return (
