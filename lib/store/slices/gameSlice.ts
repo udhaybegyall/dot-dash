@@ -32,7 +32,7 @@ const initialState: GameState = {
       selectedDot: null,
       connections: [],
       squares: [],
-    },
+    }
   };
 
 const gameSlice = createSlice({

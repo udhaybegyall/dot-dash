@@ -49,6 +49,7 @@ const Game = () => {
 
     const handleGameRestart = () => {
         game.resetGame();
+        game.setGridSize(game.grid.rows, game.grid.cols);
         setIsGameOver(false);
     };
 
@@ -59,16 +60,18 @@ const Game = () => {
 
     return (
         <div>
-            <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+            <div className='flex gap-4'>
                 <Player
                     name={game.players.player1.name}
                     score={player_one_score}
                     isCurrentPlayer={game.isCurrentPlayer('player1')}
+                    playerId={'player1'}
                 />
                 <Player
                     name={game.players.player2.name}
                     score={player_two_score}
                     isCurrentPlayer={game.isCurrentPlayer('player2')}
+                    playerId={'player2'}
                 />
             </div>
             <Grid

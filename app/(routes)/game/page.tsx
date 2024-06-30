@@ -1,6 +1,6 @@
 'use client';
 
-import Game from '@/components/game/game';
+import Game from '@/components/Game/game';
 
 const GamePage = () => {
     // const [players, setPlayers] = useState({ player1: '', player2: '' });
@@ -19,7 +19,7 @@ const GamePage = () => {
 
     return (
         <div className='flex h-screen flex-col items-center justify-center'>
-            <h1 className='text-3xl font-bold'>Game</h1>
+            {/* <h1 className='text-3xl font-bold'>Game</h1> */}
             <Game />
         </div>
     );

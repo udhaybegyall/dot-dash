@@ -113,26 +113,32 @@ const Grid: React.FC<GridProps> = ({
     onSquareCompletion,
     onTurnEnd,
 }) => {
-    const graph = useRef(new Graph(rows, cols));
+    // const graph = useRef(new Graph(rows, cols));
+    const graphRef = useRef<Graph | null>(null);
 
     useEffect(() => {
-        console.log('graph', graph);
-    });
+        graphRef.current = new Graph(rows, cols);
+
+        connections.forEach(connection => {
+            graphRef.current?.addEdge(connection.dot1, connection.dot2);
+        });
+        // console.log('graph', graph);
+    }, [rows, cols, connections]);
 
     const handleDotClick = (x: number, y: number) => {
         const newDot = { x, y };
         if (selectedDot) {
-            if (graph.current.areNeighbors(selectedDot, newDot)) {
+            if (graphRef.current?.areNeighbors(selectedDot, newDot)) {
                 // Check if an edge already exists between the selected dot and the new dot
-                if (!graph.current.hasEdge(selectedDot, newDot)) {
+                if (!graphRef.current.hasEdge(selectedDot, newDot)) {
                     // If the new dot is a neighbor and there is no edge between them, connect them
-                    graph.current.addEdge(selectedDot, newDot);
+                    graphRef.current.addEdge(selectedDot, newDot);
                     onConnectionAdd({ dot1: selectedDot, dot2: newDot });
 
                     console.log('New edge added', selectedDot, newDot);
 
                     // Check for squares
-                    const newSquares = graph.current.checkForSquares(newDot);
+                    const newSquares = graphRef.current.checkForSquares(newDot);
                     let squareCompleted = false;
 
                     newSquares.forEach(square => {
@@ -153,7 +159,6 @@ const Grid: React.FC<GridProps> = ({
 
                     // Reset the selected dot
                     // onDotSelect(null);
-
                     onTurnEnd(squareCompleted);
                 }
             } else {
@@ -171,34 +176,42 @@ const Grid: React.FC<GridProps> = ({
     };
 
     return (
-        <div
-            style={{
-                position: 'relative',
-                width: `${containerSize(dotSize, spacing, cols)}px`,
-                height: `${containerSize(dotSize, spacing, rows)}px`,
-            }}
-        >
-            <svg
-                style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                }}
-            >
-                {renderConnections(connections, dotSize, spacing)}
-                {renderSquares(squares, dotSize, spacing, player1)}
-            </svg>
+        <div className='box-sizing:border-box rounded-lg border border-[#242424] bg-card p-10'>
             <div
                 style={{
-                    display: 'grid',
-                    gridTemplateColumns: `repeat(${cols}, ${dotSize}px)`,
-                    gridTemplateRows: `repeat(${rows}, ${dotSize}px)`,
-                    gap: `${spacing}px`,
+                    position: 'relative',
+                    width: `${containerSize(dotSize, spacing, cols)}px`,
+                    height: `${containerSize(dotSize, spacing, rows)}px`,
                 }}
             >
-                {renderDots(handleDotClick, rows, cols, dotSize, selectedDot)}
+                <svg
+                    style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                    }}
+                >
+                    {renderConnections(connections, dotSize, spacing)}
+                    {renderSquares(squares, dotSize, spacing, player1)}
+                </svg>
+                <div
+                    style={{
+                        display: 'grid',
+                        gridTemplateColumns: `repeat(${cols}, ${dotSize}px)`,
+                        gridTemplateRows: `repeat(${rows}, ${dotSize}px)`,
+                        gap: `${spacing}px`,
+                    }}
+                >
+                    {renderDots(
+                        handleDotClick,
+                        rows,
+                        cols,
+                        dotSize,
+                        selectedDot
+                    )}
+                </div>
             </div>
         </div>
     );
