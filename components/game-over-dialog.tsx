@@ -35,8 +35,9 @@ const GameOverDialog = ({
                 <DialogHeader>
                     <DialogTitle>Game Over</DialogTitle>
                     <DialogDescription>
-                        {winner} won! Do you want to play again with the same
-                        settings?
+                        <span className='font-bold text-red-500'>{winner}</span>{' '}
+                        <span className='font-bold'>won!</span> Do you want to
+                        play again with the same settings? settings?
                     </DialogDescription>
                 </DialogHeader>
                 <DialogFooter>

@@ -5,6 +5,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import StoreProvider from './store-provider';
 
 import './globals.css';
+import Navbar from '@/components/ui/navbar';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -26,6 +27,7 @@ export default function RootLayout({
                     defaultTheme='dark'
                     enableSystem={true}
                 >
+                    <Navbar />
                     <StoreProvider>{children}</StoreProvider>
                     <Analytics />
                 </ThemeProvider>
