@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Grid from './grid';
 import Player from './player';
 import GameOverDialog from '@/components/game-over-dialog';

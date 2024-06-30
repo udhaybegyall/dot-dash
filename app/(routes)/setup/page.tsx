@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useDispatch } from 'react-redux';
 import { setPlayers, setGridSize } from '@/lib/store/slices/gameSlice';
@@ -28,8 +28,27 @@ const SetupPage = () => {
     const [error, setError] = useState<string>('');
     const [activeTab, setActiveTab] = useState<string>('Names');
 
+    const [maxGridSize, setMaxGridSize] = useState({ rows: 10, cols: 15 });
+
     const router = useRouter();
     const dispatch = useDispatch();
+
+    const setGridSizeLimit = () => {
+        if (window.innerWidth < 768) {
+            setMaxGridSize({ rows: 5, cols: 5 });
+        } else {
+            setMaxGridSize({ rows: 10, cols: 15 });
+        }
+    };
+
+    useEffect(() => {
+        setGridSizeLimit();
+        window.addEventListener('resize', setGridSizeLimit);
+
+        return () => {
+            window.removeEventListener('resize', setGridSizeLimit);
+        };
+    }, []);
 
     const handleNext = () => {
         if (player1 && player2) {
@@ -124,7 +143,12 @@ const SetupPage = () => {
                                 placeholder='Rows'
                                 value={rows}
                                 onChange={e =>
-                                    setRows(parseInt(e.target.value))
+                                    setRows(
+                                        Math.min(
+                                            parseInt(e.target.value),
+                                            maxGridSize.rows
+                                        )
+                                    )
                                 }
                                 className={
                                     error ? 'animate-pulse border-red-600' : ''
@@ -135,7 +159,12 @@ const SetupPage = () => {
                                 placeholder='Cols'
                                 value={cols}
                                 onChange={e =>
-                                    setCols(parseInt(e.target.value))
+                                    setCols(
+                                        Math.min(
+                                            parseInt(e.target.value),
+                                            maxGridSize.cols
+                                        )
+                                    )
                                 }
                                 className={
                                     error ? 'animate-pulse border-red-600' : ''
