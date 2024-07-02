@@ -37,6 +37,12 @@ const Game = () => {
     const player_one_score = game.players?.player1?.score ?? 0;
     const player_two_score = game.players?.player2?.score ?? 0;
 
+    // get the score of the winner
+    const winnerScore =
+        game.players.player1.score > game.players.player2.score
+            ? game.players.player1.score
+            : game.players.player2.score;
+
     const handleSquareCompletion = (player: PlayerID) => {
         game.incrementScore(player);
     };
@@ -95,6 +101,7 @@ const Game = () => {
             <GameOverDialog
                 isOpen={isGameOver}
                 winner={winner}
+                winnerScore={winnerScore}
                 onClose={handleGameEnd}
                 onRestart={handleGameRestart}
             />

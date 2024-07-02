@@ -12,6 +12,7 @@ import { Button } from '@/components/ui/button';
 interface GameOverDialogProps {
     isOpen: boolean;
     winner: string;
+    winnerScore: number;
     onClose: () => void;
     onRestart: () => void;
 }
@@ -19,6 +20,7 @@ interface GameOverDialogProps {
 const GameOverDialog = ({
     isOpen,
     winner,
+    winnerScore,
     onClose,
     onRestart,
 }: GameOverDialogProps) => {
@@ -35,16 +37,26 @@ const GameOverDialog = ({
                 <DialogHeader>
                     <DialogTitle>Game Over</DialogTitle>
                     <DialogDescription>
-                        <span className='font-bold text-red-500'>{winner}</span>{' '}
-                        <span className='font-bold'>won!</span> Do you want to
-                        play again with the same settings? settings?
+                        <span className='text-2xl font-bold text-red-500'>
+                            {winner}
+                        </span>{' '}
+                        <span className='text-2xl font-bold'>
+                            won🎉 with {winnerScore} score!
+                        </span>
+                        <p>Do you want to play again with the same settings?</p>
                     </DialogDescription>
                 </DialogHeader>
-                <DialogFooter>
-                    <Button variant='outline' onClick={handleNoClick}>
+                <DialogFooter className='gap-2'>
+                    <Button
+                        variant='outline'
+                        onClick={handleNoClick}
+                        className='w-full'
+                    >
                         No
                     </Button>
-                    <Button onClick={onRestart}>Continue</Button>
+                    <Button onClick={onRestart} className='w-full'>
+                        Continue
+                    </Button>
                 </DialogFooter>
             </DialogContent>
         </Dialog>
