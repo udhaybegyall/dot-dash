@@ -3,8 +3,8 @@
 <div align='center' style='line-height: .001; margin-top: 25px;'>
     <p >A classic game from school days.</p>
     <h4><em>"Connect the dots, claim the squares, rule the grid!"</em></h4>
-    <img src="https://img.shields.io/badge/status-active-success.svg" alt="Status">
-        <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License">
+    <img src="https://img.shields.io/badge/Status-active-success.svg" alt="Status">
+        <img src="https://img.shields.io/badge/License-Apache_2.0-blue.svg" alt="License">
 </div>
 
 ## About
@@ -63,4 +63,4 @@ We welcome contributions! We will add the Contributing Guide for more details so
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+This project is licensed under the Apache License 2.0. See the [LICENSE](LICENSE) file for more details.
