@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<image src='./public/assets/github-banner.png' alt='Banner' width='100%' />
+
+<div align='center' style='line-height: .001; margin-top: 25px;'>
+    <p >A classic game from school days.</p>
+    <h4><em>"Connect the dots, claim the squares, rule the grid!"</em></h4>
+    <img src="https://img.shields.io/badge/status-active-success.svg" alt="Status">
+        <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License">
+</div>
+
+## About
+
+Dot Dash is a modern take on the classic pen-and-paper game from our school days. Players take turns connecting dots on a grid, aiming to complete squares and mark their territory. It's a perfect blend of strategy, foresight, and a dash of nostalgia!
+
+## Features
+
+-   📱 Responsive design for both desktop and mobile play
+-   🎨 Customizable player names and grid size
+-   🏆 Score tracking
+-   🌓 Light and dark mode support
+
+## How to play
+
+1. The game starts with a grid of dots.
+2. Players take turns connecting two adjacent dots with a line.
+3. When a player completes a square, they claim it by placing the first letter of their name inside.
+4. The player with the most claimed squares at the end wins!
+
+## Roadmap
+
+-   [ ] Time Mode: each player has a limited time to complete connect the dots.
+-   [ ] Multiplayer Support:
+    -   [ ] 3-player mode
+    -   [ ] 4-player mode
+-   [ ] AI Opponent: Challenge the bot basically single player mode
+-   [ ] Themes: Choose from various visual styles.
+
+We're always open to new ideas! If you have suggestions, please open an issue to discuss them.
 
 ## Getting Started
 
-First, run the development server:
+Run locally
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. clone the repo `git clone https://github.com/udhaybegyall/dot-dash.git`
+2. cd into the repo `cd dot-dash`
+3. install dependencies `npm install`
+4. run the local server
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+    ```bash
+    npm run dev
+    # or
+    yarn dev
+    # or
+    pnpm dev
+    # or
+    bun dev
+    ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+5. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Contributing
 
-## Learn More
+We welcome contributions! We will add the Contributing Guide for more details soon.
 
-To learn more about Next.js, take a look at the following resources:
+## License
 
--   [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
--   [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
