@@ -28,31 +28,6 @@ type GridProps = {
     onTurnEnd: (squareCompleted: boolean) => void;
 };
 
-const renderDots = (
-    handleDotClick: (x: number, y: number) => void,
-    rows: number,
-    cols: number,
-    dotSize: number,
-    selectedDot: { x: number; y: number } | null
-) => {
-    const dots = [];
-    for (let x = 0; x < rows; x++) {
-        for (let y = 0; y < cols; y++) {
-            dots.push(
-                <Dot
-                    key={`${x}-${y}`}
-                    x={x}
-                    y={y}
-                    isSelected={selectedDot?.x === x && selectedDot?.y === y}
-                    onClick={handleDotClick}
-                    dotSize={dotSize}
-                />
-            );
-        }
-    }
-    return dots;
-};
-
 const renderConnections = (
     connections: {
         dot1: { x: number; y: number };
@@ -169,6 +144,34 @@ const Grid: React.FC<GridProps> = ({
             // If no dot is currently selected, select the new dot
             onDotSelect(newDot);
         }
+    };
+
+    const renderDots = (
+        handleDotClick: (x: number, y: number) => void,
+        rows: number,
+        cols: number,
+        dotSize: number,
+        selectedDot: { x: number; y: number } | null
+    ) => {
+        const dots = [];
+        for (let x = 0; x < rows; x++) {
+            for (let y = 0; y < cols; y++) {
+                dots.push(
+                    <Dot
+                        key={`${x}-${y}`}
+                        x={x}
+                        y={y}
+                        isSelected={
+                            selectedDot?.x === x && selectedDot?.y === y
+                        }
+                        onClick={handleDotClick}
+                        dotSize={dotSize}
+                        currentPlayer={currentPlayer}
+                    />
+                );
+            }
+        }
+        return dots;
     };
 
     const containerSize = (size: number, spacing: number, count: number) => {

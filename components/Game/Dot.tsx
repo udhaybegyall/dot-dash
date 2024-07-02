@@ -5,14 +5,26 @@ import { Dot as DotType } from '@/lib/types/grid';
 interface DotProps extends DotType {
     dotSize: number;
     onClick: (x: number, y: number) => void;
+    currentPlayer: string;
 }
 
-const Dot = ({ x, y, dotSize, isSelected, onClick }: DotProps) => {
+const Dot = ({
+    x,
+    y,
+    dotSize,
+    isSelected,
+    onClick,
+    currentPlayer,
+}: DotProps) => {
     const dotStyle = {
         width: dotSize,
         height: dotSize,
         borderRadius: '50%',
-        background: isSelected ? 'blue' : '#7F8F9F',
+        background: isSelected
+            ? currentPlayer === 'player1'
+                ? '#2DBDF9'
+                : '#F28124'
+            : '#9a9a9a',
         transition: 'all 0.2s ease-in-out',
         transformOrigin: 'center',
         cursor: 'pointer',
