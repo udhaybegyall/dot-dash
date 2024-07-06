@@ -20,9 +20,9 @@ const RadioGroup = ({ options, onChange }: RadioGroupProps) => {
                 <button
                     key={option}
                     className={cn(
-                        'flex h-12 w-12 items-center justify-center rounded border border-gray-300',
+                        'flex h-12 w-12 items-center justify-center rounded border border-[#383838]',
                         selectedOption === option
-                            ? 'bg-blue-500 font-bold text-white'
+                            ? 'bg-[#252424] font-bold text-white'
                             : 'bg-white text-black'
                     )}
                     onClick={() => handleChange(option)}

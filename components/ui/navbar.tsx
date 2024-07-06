@@ -19,7 +19,7 @@ const Navbar: React.FC = () => {
                     href='https://github.com/udhaybegyall/dot-dash'
                     target='_blank'
                     rel='noopener noreferrer'
-                    className='flex items-center space-x-2 rounded-full border-2 border-border p-1 pl-3 pr-3'
+                    className='flex items-center space-x-2 rounded-full border-2 border-border p-1 pl-3 pr-3 hover:border-[#383838]'
                 >
                     <svg
                         className='h-5 w-5'
