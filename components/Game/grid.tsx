@@ -61,7 +61,8 @@ const renderSquares = (
             x={(y + 0.65) * (dotSize + spacing)}
             y={(x + 0.6) * (dotSize + spacing) + dotSize / 4}
             fontSize={dotSize * 1.5}
-            fontWeight={600}
+            fontFamily="var(--font-jersey-20)"
+            fontWeight={400}
             textAnchor='middle'
             alignmentBaseline='middle'
             fill={player === getFirstLetter(player1) ? '#2DBDF9' : '#F28124'}
@@ -179,7 +180,7 @@ const Grid: React.FC<GridProps> = ({
     };
 
     return (
-        <div className='box-sizing:border-box rounded-lg border border-[#242424] bg-card p-10'>
+        <div className='box-sizing:border-box rounded-lg bg-card p-10'>
             <div
                 style={{
                     position: 'relative',

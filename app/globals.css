@@ -30,7 +30,7 @@
 }
   
 :root {
-    --radius: 0.5rem;
+    --radius: .7rem;
   
     /* light */
     --background: oklch(1 0 0);                 /* 0 0% 100% */
@@ -65,35 +65,35 @@
 }
   
 .dark {
-    --background: oklch(0.1879 0.0016 17.3);               /* 0 0% 10% */
-    --foreground: oklch(0.985 0 0);             /* 0 0% 98% */
+    --background: oklch(0.1615 0.0034 17.51);
+    --foreground: oklch(0.985 0 0);
   
-    --dot: oklch(0.56 0.04 227);                /* 210 14% 56% */
+    --dot: oklch(0.56 0.04 227);
   
-    --card: oklch(0.2201 0.0031 17.39);                    /* 0 0% 11% */
+    --card: oklch(0.1419 0.0043 50.48);
     --card-foreground: oklch(0.985 0 0);
   
-    --popover: oklch(0.141 0.005 285.823);      /* 240 10% 3.9% */
+    --popover: oklch(0.141 0.005 285.823);
     --popover-foreground: oklch(0.985 0 0);
   
-    --primary: oklch(0.985 0 0);                /* 0 0% 98% */
-    --primary-foreground: oklch(0.21 0.006 285.885);
+    --primary: oklch(0.6489 0.1915 37.63);
+    --primary-foreground: oklch(1 0 0);
   
-    --secondary: oklch(0.274 0.006 286.033);    /* 240 3.7% 15.9% */
+    --secondary: oklch(0.274 0.006 286.033);
     --secondary-foreground: oklch(0.985 0 0);
   
     --muted: oklch(0.274 0.006 286.033);
-    --muted-foreground: oklch(0.705 0.015 286.067); /* 240 5% 64.9% */
+    --muted-foreground: oklch(0.705 0.015 286.067);
   
     --accent: oklch(0.274 0.006 286.033);
     --accent-foreground: oklch(0.985 0 0);
   
-    --destructive: oklch(0.704 0.191 22.216);   /* 0 62.8% 30.6% */
+    --destructive: oklch(0.704 0.191 22.216);
     --destructive-foreground: oklch(0.985 0 0);
   
-    --border: oklch(0.2952 0.0029 17.32);                  /* 0 0% 14% */
+    --border: oklch(0.2952 0.0029 17.32);
     --input: oklch(0.274 0.006 286.033);
-    --ring: oklch(0.552 0.016 285.938);         /* 220 4.9% 30.9% */
+    --ring: oklch(0.6489 0.1915 37.63);
 }
 
 @layer base {
@@ -102,6 +102,29 @@
     }
     body {
       @apply bg-background text-foreground;
+      font-family: var(--font-jersey-20);
+      letter-spacing: 0.025em;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-jersey-20);
+      letter-spacing: 0.05em;
+    }
+    
+    .text-display {
+      font-family: var(--font-jersey-20);
+      letter-spacing: 0.1em;
+    }
+    
+    .text-body {
+      font-family: var(--font-jersey-15);
+      letter-spacing: 0.025em;
+    }
+    
+    .text-caption {
+      font-family: var(--font-jersey-15);
+      font-size: 0.875rem;
+      letter-spacing: 0.05em;
     }
 }
   

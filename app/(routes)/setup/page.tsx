@@ -85,13 +85,13 @@ const SetupPage = () => {
                 <TabsContent value='Names'>
                     <Card className='w-full max-w-md p-4'>
                         <CardHeader>
-                            <CardTitle>Player Names</CardTitle>
+                            <CardTitle className="text-display">Player Names</CardTitle>
                             <CardDescription>
                                 Enter Player names
                                 {error && (
                                     <div className='mt-2 flex items-center text-red-500'>
                                         <AlertCircle className='mr-1 h-5 w-5' />
-                                        <span>{error}</span>
+                                        <span className="tracking-wide">{error}</span>
                                     </div>
                                 )}
                             </CardDescription>
@@ -117,7 +117,7 @@ const SetupPage = () => {
                             />
                         </CardContent>
                         <CardFooter>
-                            <Button className='w-full' onClick={handleNext}>
+                            <Button className='w-full text-lg tracking-wider' onClick={handleNext}>
                                 Next
                             </Button>
                         </CardFooter>
@@ -126,13 +126,13 @@ const SetupPage = () => {
                 <TabsContent value='Grid Size'>
                     <Card className='w-full max-w-md p-4'>
                         <CardHeader>
-                            <CardTitle>Grid Size</CardTitle>
+                            <CardTitle className="text-display">Grid Size</CardTitle>
                             <CardDescription>
                                 Enter Grid Size
                                 {error && (
                                     <div className='mt-2 flex items-center text-red-500'>
                                         <AlertCircle className='mr-1 h-5 w-5' />
-                                        <span>{error}</span>
+                                        <span className="tracking-wide">{error}</span>
                                     </div>
                                 )}
                             </CardDescription>
@@ -173,7 +173,7 @@ const SetupPage = () => {
                         </CardContent>
                         <CardFooter>
                             <Button
-                                className='w-full'
+                                className='w-full text-lg tracking-wider'
                                 onClick={handleStartGame}
                             >
                                 Let&apos;s Go!

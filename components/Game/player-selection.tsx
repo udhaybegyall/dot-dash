@@ -31,6 +31,7 @@ const PlayerSelection = () => {
                 size='lg'
                 onClick={handleStartGame}
                 disabled={!selectedOption}
+                className='text-lg'
             >
                 Start Game
             </Button>

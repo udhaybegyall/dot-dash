@@ -9,6 +9,10 @@ const config = {
     ],
     theme: {
         extend: {
+            fontFamily: {
+                'jersey-15': ['var(--font-jersey-15)'],
+                'jersey-20': ['var(--font-jersey-20)'],
+            },
             backgroundImage: {
                 'gradient-border': 'linear-gradient(60deg, #ff7e5f, #feb47b, #ff7e5f)',
             },

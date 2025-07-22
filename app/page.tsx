@@ -28,7 +28,7 @@ export default function Home() {
             <div className='z-30'>
                 <Suspense fallback={<div>Loading...</div>}>
                     <div className='flex flex-col items-center justify-center rounded-lg border border-border bg-background p-10'>
-                        <h1 className='mb-5 text-lg text-white'>
+                        <h1 className='mb-5 text-xl text-white tracking-wider'>
                             Choose number of players
                         </h1>
                         <PlayerSelection />
